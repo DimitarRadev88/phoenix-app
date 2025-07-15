@@ -1,6 +1,6 @@
 package com.drrad.phoenix_app.property;
 
-import com.drrad.phoenix_app.location.Location;
+import com.drrad.phoenix_app.location.model.Location;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +16,7 @@ public abstract class Property {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Location location;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
 }

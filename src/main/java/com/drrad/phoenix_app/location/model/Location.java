@@ -1,7 +1,6 @@
-package com.drrad.phoenix_app.location;
+package com.drrad.phoenix_app.location.model;
 
 import com.drrad.phoenix_app.location.enums.LocationType;
-import com.drrad.phoenix_app.location.enums.Municipality;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,11 +17,13 @@ public class Location {
     @Basic
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "municipality_id")
     private Municipality municipality;
     @Column(name = "location_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private LocationType locationType;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
 }
